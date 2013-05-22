@@ -34,6 +34,3 @@ public interface ExternalFeedListener {
     void onEvent(String itemName, HashMap<String,String> currentValues, boolean isSnapshot);
 
 }
-
-
-/*--- Formatted in Lightstreamer Java Convention Style on 2005-11-03 ---*/

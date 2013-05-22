@@ -320,6 +320,3 @@ public class ExternalFeedSimulator {
     }
 
 }
-
-
-/*--- Formatted in Lightstreamer Java Convention Style on 2005-11-03 ---*/
