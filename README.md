@@ -2,7 +2,7 @@
 Lightstreamer Stock-List Demo Adapter
 =====================================
 
-This project include the implementation of the Data Adapter in Java implementing the functionalities required by Lightstreamer Stock-List demos.
+This project include a Java implementation of the Data Adapter interface implementing the functionalities required by Lightstreamer Stock-List demos.
 
 Java Data Adapter and MetaData Adapter
 --------------------------------------
