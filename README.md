@@ -4,7 +4,7 @@ Lightstreamer Stock-List Demo Adapter
 
 This project include a Java implementation of the Data Adapter interface implementing the functionalities required by Lightstreamer Stock-List demos.
 
-Java Data Adapter and MetaData Adapter
+Java Data Adapter and Metadata Adapter
 --------------------------------------
 
 This Data Adapter accepts a limited set of item names (the names starting with "item") and listens to a (simulated) stock quotes feed, waiting for update events. The events pertaining to the currently subscribed items are then forwarded to Lightstreamer.
