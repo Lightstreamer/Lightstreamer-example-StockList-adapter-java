@@ -89,6 +89,8 @@ See Also
 * TODO: add link to GitHub project of [Lightstreamer Simple Grid Demo Client for JavaScript]
 * TODO: add link to GitHub project of [Lightstreamer Bandwidth and Frequency Demo Client for JavaScript]
 * TODO: add link to GitHub project of [Lightstreamer Chart Demo Client for JavaScript]
+* [Lightstreamer Stock-List Demo Client for Dojo](https://github.com/Weswit/Lightstreamer-example-StockList-client-dojo)
+* [Lightstreamer StockList Demo Client for PhoneGap](https://github.com/Weswit/Lightstreamer-example-StockList-client-phonegap)
 * [Lightstreamer Portfolio Demo Client for JavaScript](https://github.com/Weswit/Lightstreamer-example-Portfolio-client-javascript)
 * [Lightstreamer Portfolio Demo Client for Dojo](https://github.com/Weswit/Lightstreamer-example-Portfolio-client-dojo)
 
