@@ -1,5 +1,5 @@
 
-Lightstreamer Stock-List Demo Adapter
+Lightstreamer StockList Demo Adapter
 =====================================
 
 This project include a Java implementation of the Data Adapter interface implementing the functionalities required by Lightstreamer Stock-List demos.
@@ -83,13 +83,13 @@ If this is not your case because you have removed the "Demo" folder or you want 
 See Also
 --------
 
-* TODO: add link to GitHub project of [Lightstreamer Basic Stock-List Demo Client for JavaScript]
-* TODO: add link to GitHub project of [Lightstreamer Stock-List Demo Client for JavaScript]
-* TODO: add link to GitHub project of [Lightstreamer Framed Stock-List Demo Client for JavaScript]
+* TODO: add link to GitHub project of [Lightstreamer Basic StockList Demo Client for JavaScript]
+* TODO: add link to GitHub project of [Lightstreamer StockList Demo Client for JavaScript]
+* TODO: add link to GitHub project of [Lightstreamer Framed StockList Demo Client for JavaScript]
 * TODO: add link to GitHub project of [Lightstreamer Simple Grid Demo Client for JavaScript]
 * TODO: add link to GitHub project of [Lightstreamer Bandwidth and Frequency Demo Client for JavaScript]
 * TODO: add link to GitHub project of [Lightstreamer Chart Demo Client for JavaScript]
-* [Lightstreamer Stock-List Demo Client for Dojo](https://github.com/Weswit/Lightstreamer-example-StockList-client-dojo)
+* [Lightstreamer StockList Demo Client for Dojo](https://github.com/Weswit/Lightstreamer-example-StockList-client-dojo)
 * [Lightstreamer StockList Demo Client for PhoneGap](https://github.com/Weswit/Lightstreamer-example-StockList-client-phonegap)
 * [Lightstreamer Portfolio Demo Client for JavaScript](https://github.com/Weswit/Lightstreamer-example-Portfolio-client-javascript)
 * [Lightstreamer Portfolio Demo Client for Dojo](https://github.com/Weswit/Lightstreamer-example-Portfolio-client-dojo)
