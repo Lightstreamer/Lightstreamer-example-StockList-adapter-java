@@ -9,7 +9,7 @@ Java Data Adapter and Metadata Adapter
 
 This Data Adapter accepts a limited set of item names (the names starting with "item") and listens to a (simulated) stock quotes feed, waiting for update events. The events pertaining to the currently subscribed items are then forwarded to Lightstreamer.
 This example demonstrates how a Data Adapter could interoperate with a broadcast feed (which always sends data for all available items) by selecting the updates to be sent. Many other types of feeds may exist, with very different behaviors.
-The Metadata Adapter functionalities are absolved by the LiteralBasedProvider, a simple full implementation of a Metadata Adapter, made available in Lightstreamer SDK. 
+The Metadata Adapter functionalities are absolved by the [LiteralBasedProvider](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java), a simple full implementation of a Metadata Adapter, made available in Lightstreamer SDK. 
 
 External Feed Simulator
 -----------------------
@@ -83,16 +83,12 @@ If this is not your case because you have removed the "Demo" folder or you want 
 See Also
 --------
 
-* TODO: add link to GitHub project of [Lightstreamer Basic StockList Demo Client for JavaScript]
 * TODO: add link to GitHub project of [Lightstreamer StockList Demo Client for JavaScript]
-* TODO: add link to GitHub project of [Lightstreamer Framed StockList Demo Client for JavaScript]
-* TODO: add link to GitHub project of [Lightstreamer Simple Grid Demo Client for JavaScript]
-* TODO: add link to GitHub project of [Lightstreamer Bandwidth and Frequency Demo Client for JavaScript]
-* TODO: add link to GitHub project of [Lightstreamer Chart Demo Client for JavaScript]
 * [Lightstreamer StockList Demo Client for Dojo](https://github.com/Weswit/Lightstreamer-example-StockList-client-dojo)
 * [Lightstreamer StockList Demo Client for PhoneGap](https://github.com/Weswit/Lightstreamer-example-StockList-client-phonegap)
 * [Lightstreamer Portfolio Demo Client for JavaScript](https://github.com/Weswit/Lightstreamer-example-Portfolio-client-javascript)
 * [Lightstreamer Portfolio Demo Client for Dojo](https://github.com/Weswit/Lightstreamer-example-Portfolio-client-dojo)
+* [Lightstreamer Reusable Metadata Adapter in Java](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java)
 
 Lightstreamer Compatibility Notes
 ---------------------------------
