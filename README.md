@@ -59,7 +59,7 @@ Now with the StockList folder obtained on your behalf or with the one in the /De
 4. Copy the "ls-generic-adapters.jar" file from the "lib" directory of the sibling "Reusable_MetadataAdapters" SDK example to the "shared/lib" subdirectory in your Lightstreamer Server installation home directory.
 5. Lightstreamer Server is now ready to be launched.
 
-Please try your Adapter with one of the clients in this [list](https://github.com/Weswit/Lightstreamer-example-StockList-adapter-java#Clients_using_this_Adapter).
+Please try your Adapter with one of the clients in this [list](https://github.com/Weswit/Lightstreamer-example-StockList-adapter-java#clients-using-this-adapter).
 
 # See Also #
 
