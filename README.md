@@ -1,11 +1,11 @@
 
 # Lightstreamer StockList Demo Adapter #
 
-This project includes the resources needed to develop a Data Adapter for the [Lighstreamer StockList Demos](http://www.lightstreamer.com/demos#StockListDemo) that are pluggable into Lightstreamer Server.
+This project includes the resources needed to develop a Data Adapter for the [Lighstreamer StockList Demos](http://www.lightstreamer.com/demos#StockListDemo) that is pluggable into Lightstreamer Server.
 Please refer [here](http://www.lightstreamer.com/latest/Lightstreamer_Allegro-Presto-Vivace_5_1_Colosseo/Lightstreamer/DOCS-SDKs/General%20Concepts.pdf) for more details about Lightstreamer Adapters.<br>
-The Stock-List Demo simulates a market data feed and front-end for stock quotes. It shows a list of stock symbols and updates prices and other fields displayed on the page in real time.<br>
+The Stock-List demos simulate a market data feed and front-end for stock quotes. They show a list of stock symbols and updates prices and other fields displayed on the page in real time.<br>
 
-The project is comprised of source code and a deployment example. The Stock-List Data Adapter is comprised of three Java classes:
+The project is comprised of source code and a deployment example. The Stock-List Data Adapter is comprised of three Java classes.
 
 ## ExternalFeedSimulator ##
 
@@ -17,11 +17,12 @@ Handles the data delivery from the ExternalFeedSimulator to the DemoDataProvider
 
 ## DemoDataAdapter ##
 
-Implements the DataProvider interface to handle the communication with Lightstreamer Kernel. Leverages the ExternalFeedListener to get the data originated by the ExternalFeedSimulator. Injects the received data into Lightstreamer Kernel or filters it our based on the subscriptions/unsubscriptions received from the Kernel.
+Implements the DataProvider interface to handle the communication with Lightstreamer Kernel. Leverages the ExternalFeedListener to get the data originated by the ExternalFeedSimulator. Injects the received data into Lightstreamer Kernel or filters it our based on the subscriptions/unsubscriptions received from the Kernel.<br>
+<br>
 
 See the source code comments for further details.
 
-The Metadata Adapter functionalities are absolved by the [LiteralBasedProvider](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java), a simple full implementation of a Metadata Adapter, made available in Lightstreamer SDK. 
+The Metadata Adapter functionalities are absolved by the [LiteralBasedProvider](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java), a simple full implementation of a Metadata Adapter, made available in Lightstreamer distribution. 
 
 
 # Build #
@@ -51,7 +52,7 @@ If this is not your case because you have removed the "Demo" folder or you want 
 2. Create an "adapters.xml" file inside the "StockList" folder and use a content similar to that of the file in the directory /Deplolyment_LS/StockList (this is an example configuration, you can modify it to your liking).
 3. Copy into /StockList/lib the jars (LS_quote_feed_simulator.jar and LS_StockListDemo_DataAdapter.jar) created in the previous section.
 
-Now with the StockList folder obtained on your behalf or with the one in the /Deployment_LS of this project, you must follow these steps:
+Now with the "StockList" folder obtained on your behalf or with the one in the "Deployment_LS" folder of this project, you must follow these steps:
 
 1. Make sure you have installed Lightstreamer Server, as explained in the GETTING_STARTED.TXT file in the installation home directory.
 2. Make sure that Lightstreamer Server is not running.
