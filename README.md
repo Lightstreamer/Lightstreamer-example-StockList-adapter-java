@@ -66,6 +66,7 @@ Please test your Adapter with one of the clients in this [list](https://github.c
 
 ## Clients using this Adapter ##
 
+* [Lightstreamer StockList Demo Client for JavaScript](https://github.com/Weswit/Lightstreamer-example-StockList-client-javascript)
 * [Lightstreamer StockList Demo Client for Dojo](https://github.com/Weswit/Lightstreamer-example-StockList-client-dojo)
 * [Lightstreamer StockList Demo Client for PhoneGap](https://github.com/Weswit/Lightstreamer-example-StockList-client-phonegap)
 * [Lightstreamer Portfolio Demo Client for JavaScript](https://github.com/Weswit/Lightstreamer-example-Portfolio-client-javascript)
