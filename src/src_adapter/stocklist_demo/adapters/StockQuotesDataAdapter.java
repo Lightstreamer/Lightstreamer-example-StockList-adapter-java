@@ -22,6 +22,8 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.log4j.Logger;
 import org.apache.log4j.xml.DOMConfigurator;
@@ -78,6 +80,19 @@ public class StockQuotesDataAdapter implements DataProvider {
             }
         }
     };
+    
+    /**
+     * Currently unused:
+     * A static map, to be used by the Metadata Adapter to find the data
+     * adapter instance; this allows the Metadata Adapter to forward client
+     * messages to the adapter.
+     * The map allows multiple instances of this Data Adapter to be included
+     * in different Adapter Sets. Each instance is identified with the name
+     * of the related Adapter Set; defining multiple instances in the same
+     * Adapter Set is not allowed.
+     */
+    public static final ConcurrentHashMap<String, StockQuotesDataAdapter> feedMap =
+        new ConcurrentHashMap<String, StockQuotesDataAdapter>();
 
     public StockQuotesDataAdapter() {
         myFeed = new ExternalFeedSimulator();
@@ -99,6 +114,13 @@ public class StockQuotesDataAdapter implements DataProvider {
             }
         }
         logger = Logger.getLogger("LS_demos_Logger.StockQuotes");
+        
+        //The feedMap of this adapter is never used
+        // Read the Adapter Set name, which is supplied by the Server as a parameter
+        String adapterSetId = (String) params.get("adapters_conf.id");
+        // Put a reference to this instance on a static map
+        // to be read by the Metadata Adapter
+        feedMap.put(adapterSetId, this);
 
         myFeed.start();
         logger.info("StockQuotesDataAdapter ready.");
@@ -139,6 +161,15 @@ public class StockQuotesDataAdapter implements DataProvider {
         return true;
     }
 
+    public void clearStatus() {
+        synchronized (subscribedItems) {
+            Set<String> keys = subscribedItems.keySet();
+            for (String itemName : keys) {
+                listener.clearSnapshot(itemName);
+            }
+        }
+    }
+    
     private class MyFeedListener implements ExternalFeedListener {
 
         /**
@@ -146,6 +177,7 @@ public class StockQuotesDataAdapter implements DataProvider {
          * If isSnapshot is true, then the event contains a full snapshot
          * with the current values of all fields for the stock.
          */
+        
         public void onEvent(String itemName, final HashMap<String,String> currentValues,
                             boolean isSnapshot) {
             synchronized (subscribedItems) {
