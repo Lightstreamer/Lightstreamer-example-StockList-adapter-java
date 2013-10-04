@@ -113,7 +113,6 @@ Please test your Adapter with one of the clients in this [list](https://github.c
 # See Also #
 
 ## Clients using this Adapter ##
-
 * [Lightstreamer StockList Demo Client for JavaScript](https://github.com/Weswit/Lightstreamer-example-StockList-client-javascript)
 * [Lightstreamer StockList Demo Client for Dojo](https://github.com/Weswit/Lightstreamer-example-StockList-client-dojo)
 * [Lightstreamer StockList Demo Client for PhoneGap](https://github.com/Weswit/Lightstreamer-example-StockList-client-phonegap)
@@ -127,9 +126,11 @@ Please test your Adapter with one of the clients in this [list](https://github.c
 * [Lightstreamer StockList Demo Client for BlackBerry WebWorks](https://github.com/Weswit/Lightstreamer-example-StockList-client-blackberry10-html)
 
 ## Related projects ##
-
 * [Lightstreamer Reusable Metadata Adapter in Java](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java)
 * [Lightstreamer Portfolio Demo Adapter](https://github.com/Weswit/Lightstreamer-example-Portfolio-adapter-java)
+
+## The same Demo Adapter with other technologies ##
+* [Lightstreamer StockList Demo Adapter for .NET](https://github.com/Weswit/Lightstreamer-example-StockList-adapter-dotnet)
 
 # Lightstreamer Compatibility Notes #
 
