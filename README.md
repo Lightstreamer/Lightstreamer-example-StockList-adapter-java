@@ -113,12 +113,7 @@ Please test your Adapter with one of the clients in this [list](https://github.c
 # See Also #
 
 ## Clients using this Adapter ##
-* [Lightstreamer - Bandwidth and Frequency Demo - HTML Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-javascript#bandwidth-and-frequency-demo)
-* [Lightstreamer - Basic Stock-List Demo - HTML Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-javascript#basic-stocklist-demo)
-* [Lightstreamer - Chart Demo - HTML Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-javascript#chart-demo)
-* [Lightstreamer - Framed Stock-List Demo - HTML Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-javascript#framed-stocklist-demo)
-* [Lightstreamer - Simple Grid Demo - HTML Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-javascript#simple-grid-demo)
-* [Lightstreamer - Stock-List Demo - HTML Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-javascript#stocklist-demo)
+* [Lightstreamer - Stock-List Demos - HTML Clients](https://github.com/Weswit/Lightstreamer-example-Stocklist-client-javascript)
 * [Lightstreamer - Stock-List Demo - Dojo Toolkit Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-dojo)
 * [Lightstreamer - Stock-List Demo - PhoneGap Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-phonegap)
 * [Lightstreamer - Portfolio Demo - HTML Client](https://github.com/Weswit/Lightstreamer-example-Portfolio-client-javascript)
@@ -126,7 +121,7 @@ Please test your Adapter with one of the clients in this [list](https://github.c
 * [Lightstreamer - Basic Stock-List Demo - jQuery (jqGrid) Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-jquery)
 * [Lightstreamer - Basic Stock-List Demo - Java SE (Swing) Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-java)
 * [Lightstreamer - Basic Stock-List Demo - .NET Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-dotnet)
-* [Lightstreamer - Basic Stock-List Demo - Flex Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-flex)
+* [Lightstreamer - Stock-List Demos - Flex Clients](https://github.com/Weswit/Lightstreamer-example-StockList-client-flex)
 * [Lightstreamer - Basic Stock-List Demo - Flash Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-flash)
 * [Lightstreamer - Basic Stock-List Demo - BlackBerry (WebWorks) Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-blackberry10-html)
 
