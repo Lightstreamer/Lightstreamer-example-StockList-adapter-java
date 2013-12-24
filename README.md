@@ -1,5 +1,5 @@
 # Lightstreamer - Stock-List Demo - Java Adapter #
-<!-- START DESCRIPTION Stock-List Demo -->
+<!-- START DESCRIPTION lightstreamer-example-stocklist-adapter-java -->
 
 This project includes the resources needed to develop a Data Adapter for the [Lighstreamer - Basic Stock-List Demo - HTML Client](http://www.lightstreamer.com/demos#StockListDemo) that is pluggable into Lightstreamer Server.
 Please refer [here](http://www.lightstreamer.com/latest/Lightstreamer_Allegro-Presto-Vivace_5_1_Colosseo/Lightstreamer/DOCS-SDKs/General%20Concepts.pdf) for more details about Lightstreamer Adapters.<br>
@@ -24,7 +24,7 @@ See the source code comments for further details.
 
 The Metadata Adapter functionalities are absolved by the `LiteralBasedProvider` in [Lightstreamer - Reusable Metadata Adapters - Java Adapter](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java), a simple full implementation of a Metadata Adapter, made available in Lightstreamer distribution. 
 
-<!-- END DESCRIPTION Stock-List Demo -->
+<!-- END DESCRIPTION lightstreamer-example-stocklist-adapter-java -->
 
 # Build #
 
