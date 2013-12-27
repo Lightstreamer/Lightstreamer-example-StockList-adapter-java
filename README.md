@@ -129,6 +129,7 @@ Please test your Adapter with one of the clients in this [list](https://github.c
 * [Lightstreamer - Stock-List Demos - Flex Clients](https://github.com/Weswit/Lightstreamer-example-StockList-client-flex)
 * [Lightstreamer - Stock-List Demos - Flash Clients](https://github.com/Weswit/Lightstreamer-example-StockList-client-flash)
 * [Lightstreamer - Basic Stock-List Demo - BlackBerry (WebWorks) Client](https://github.com/Weswit/Lightstreamer-example-StockList-client-blackberry10-html)
+* [Lightstreamer - Stock-List Demos - HTML (General Interface) Clients](https://github.com/Weswit/Lightstreamer-example-StockList-client-gi)
 
 <!-- END RELATED_ENTRIES -->
 ## Related projects ##
