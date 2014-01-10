@@ -141,4 +141,4 @@ Please test your Adapter with one of the clients in this [list](https://github.c
 
 # Lightstreamer Compatibility Notes #
 
-- Compatible with Lightstreamer SDK for Java Adapters since 5.1
+- Compatible with Lightstreamer SDK for Java Adapters since 6.0
