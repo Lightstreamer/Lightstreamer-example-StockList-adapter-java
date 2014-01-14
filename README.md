@@ -138,6 +138,7 @@ Please test your Adapter with one of the clients in this [list](https://github.c
 
 ## The Same Demo Adapter With Other Technologies ##
 * [Lightstreamer - Stock-List Demo - .NET Adapter](https://github.com/Weswit/Lightstreamer-example-StockList-adapter-dotnet)
+* [Lightstreamer - Stock-List Demo - Java (JMS) Adapter](https://github.com/Weswit/Lightstreamer-example-StockList-adapter-JMS)
 
 # Lightstreamer Compatibility Notes #
 
