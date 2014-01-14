@@ -114,7 +114,7 @@ Please test your Adapter with one of the clients in this [list](https://github.c
 
 # See Also #
 
-## Clients using this Adapter ##
+## Clients Using This Adapter ##
 
 <!-- START RELATED_ENTRIES -->
 
@@ -132,11 +132,11 @@ Please test your Adapter with one of the clients in this [list](https://github.c
 * [Lightstreamer - Stock-List Demos - HTML (General Interface) Clients](https://github.com/Weswit/Lightstreamer-example-StockList-client-gi)
 
 <!-- END RELATED_ENTRIES -->
-## Related projects ##
+## Related Projects ##
 * [Lightstreamer - Reusable Metadata Adapters - Java Adapter](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java)
 * [Lightstreamer - Portfolio Demo - Java Adapter](https://github.com/Weswit/Lightstreamer-example-Portfolio-adapter-java)
 
-## The same Demo Adapter with other technologies ##
+## The Same Demo Adapter With Other Technologies ##
 * [Lightstreamer - Stock-List Demo - .NET Adapter](https://github.com/Weswit/Lightstreamer-example-StockList-adapter-dotnet)
 
 # Lightstreamer Compatibility Notes #
