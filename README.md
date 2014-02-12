@@ -1,7 +1,7 @@
 # Lightstreamer - Stock-List Demo - Java Adapter #
 <!-- START DESCRIPTION lightstreamer-example-stocklist-adapter-java -->
 
-This project includes the resources needed to develop a Data Adapter for the [Lighstreamer - Basic Stock-List Demo - HTML Client](http://www.lightstreamer.com/demos#StockListDemo) that is pluggable into Lightstreamer Server.
+This project includes the resources needed to develop a Data Adapter for the [Lighstreamer - Basic Stock-List Demo - HTML Client](https://github.com/Weswit/Lightstreamer-example-Stocklist-client-javascript#basic-stock-list-demo---html-client) that is pluggable into Lightstreamer Server.
 Please refer [here](http://www.lightstreamer.com/latest/Lightstreamer_Allegro-Presto-Vivace_5_1_Colosseo/Lightstreamer/DOCS-SDKs/General%20Concepts.pdf) for more details about Lightstreamer Adapters.<br>
 The Stock-List demos simulate a market data feed and front-end for stock quotes. They show a list of stock symbols and updates prices and other fields displayed on the page in real time.<br>
 
