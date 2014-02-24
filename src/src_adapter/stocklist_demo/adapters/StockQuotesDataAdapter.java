@@ -161,6 +161,7 @@ public class StockQuotesDataAdapter implements DataProvider {
         return true;
     }
 
+    // never used in the demo, just showing the feature
     public void clearStatus() {
         synchronized (subscribedItems) {
             Set<String> keys = subscribedItems.keySet();
