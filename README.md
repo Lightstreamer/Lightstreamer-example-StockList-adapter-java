@@ -103,8 +103,8 @@ If you want to install a version of the *Stock-List Demo* in your local Lightstr
 
 To build your own version of `LS_StockListDemo_DataAdapter.jar` and `LS_quote_feed_simulator.jar`, instead of using the one provided in the `deploy.zip` file from the [Install](https://github.com/Weswit/Lightstreamer-example-Stocklist-adapter-java#install) section above, follow these steps.
 * Download this project.
-* Get the `ls-adapter-interface.jar` file from the `/lib` folder of the [latest Lightstreamer distribution](http://www.lightstreamer.com/download), and copy them into the `lib` directory of this project.
-* Get the `log4j-1.2.15.jar` file form the `/shared/lib` folder of the [latest Lightstreamer distribution](http://www.lightstreamer.com/download), and copy them into the `lib` directory of this project.
+* Get the `ls-adapter-interface.jar` file from the `/lib` folder of the [latest Lightstreamer distribution](http://www.lightstreamer.com/download), and copy it into the `lib` directory of this project.
+* Get the `log4j-1.2.15.jar` file form the `/shared/lib` folder of the [latest Lightstreamer distribution](http://www.lightstreamer.com/download), and copy it into the `lib` directory of this project.
 * Create the jars `LS_StockListDemo_DataAdapter.jar` and `LS_quote_feed_simulator.jar` with commands like these:
 ```sh
  >javac -source 1.7 -target 1.7 -nowarn -g -classpath lib/log4j-1.2.15.jar -sourcepath src/src_feed -d tmp_classes src/src_feed/portfolio_demo/feed_simulator/ExternalFeedSimulator.java
