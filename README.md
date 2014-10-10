@@ -139,3 +139,4 @@ To build your own version of `LS_StockListDemo_DataAdapter.jar` and `LS_quote_fe
 ## Lightstreamer Compatibility Notes
 
 - Compatible with Lightstreamer SDK for Java Adapters since 6.0
+- For a version of this example compatible with Lightstreamer SDK for Java Adapters version 5.x, please refer to [this tag](https://github.com/Weswit/Lightstreamer-example-StockList-adapter-java/tree/for_Lightstreamer_5.1.2).
