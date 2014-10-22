@@ -7,7 +7,7 @@ The Stock-List demos simulate a market data feed and front-end for stock quotes.
 
 ## Details
 
-The project is comprised of source code and a deployment example. 
+The project is comprised of source code and a deployment example.
 
 ### Dig the Code
 
@@ -28,16 +28,16 @@ Implements the DataProvider interface to handle the communication with Lightstre
 
 See the source code comments for further details.
 
-The Metadata Adapter functionalities are absolved by the `LiteralBasedProvider` in [Lightstreamer - Reusable Metadata Adapters - Java Adapter](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java), a simple full implementation of a Metadata Adapter, made available in Lightstreamer distribution. 
+The Metadata Adapter functionalities are absolved by the `LiteralBasedProvider` in [Lightstreamer - Reusable Metadata Adapters - Java Adapter](https://github.com/Weswit/Lightstreamer-example-ReusableMetadata-adapter-java), a simple full implementation of a Metadata Adapter, already provided by Lightstreamer server. 
 
 <!-- END DESCRIPTION lightstreamer-example-stocklist-adapter-java -->
 
 ### The Adapter Set Configuration
 
-This Adapter Set is configured and will be referenced by the clients as `DEMO`. 
+This Adapter Set is configured and will be referenced by the clients as `DEMO`.
 
 The `adapters.xml` file for the Stock-List Demo, should look like:
- 
+
 ```xml
 <?xml version="1.0"?>
 
@@ -85,7 +85,7 @@ The `adapters.xml` file for the Stock-List Demo, should look like:
 </adapters_conf>
 ```
 
-Please refer [here](http://www.lightstreamer.com/latest/Lightstreamer_Allegro-Presto-Vivace_5_1_Colosseo/Lightstreamer/DOCS-SDKs/General%20Concepts.pdf) for more details about Lightstreamer Adapters.<br>
+Please refer [here](http://www.lightstreamer.com/docs/base/General%20Concepts.pdf) for more details about Lightstreamer Adapters.<br>
 
 ## Install
 
@@ -95,7 +95,6 @@ If you want to install a version of the *Stock-List Demo* in your local Lightstr
 * Make sure that Lightstreamer Server is not running.
 * In the `adapters` folder of your Lightstreamer Server installation, you may find a `Demo` folder, containing some adapters ready-made for several demo including the Stock-List one. If this is the case, you already have a Stock-List Demo Adapter installed and you may stop here. Please note that, in case of Demo folder already installed, the MetaData Adapter jar installed is a mixed one that combines the functionality of several demos. If the Demo folder is not installed, or you have removed it, or you want to install the Stock-List Adapter Set alone, please continue to follow the next steps.
 * Get the `deploy.zip` file of the [latest release](https://github.com/Weswit/Lightstreamer-example-StockList-adapter-java/releases), unzip it, and copy the `StockList` folder into the `adapters` folder of your Lightstreamer Server installation.
-* Copy the `ls-generic-adapters.jar` file from the `lib` directory of the sibling "Reusable_MetadataAdapters" SDK example to the `shared/lib` subdirectory in your Lightstreamer Server installation home directory.
 * Launch Lightstreamer Server.
 * Test the Adapter, launching the [Basic Stock-List Demo - HTML Client](https://github.com/Weswit/Lightstreamer-example-Stocklist-client-javascript#basic-stock-list-demo---html-client) listed in [Clients Using This Adapter](https://github.com/Weswit/Lightstreamer-example-StockList-adapter-java#clients-using-this-adapter).
 
@@ -108,11 +107,11 @@ To build your own version of `LS_StockListDemo_DataAdapter.jar` and `LS_quote_fe
 * Create the jars `LS_StockListDemo_DataAdapter.jar` and `LS_quote_feed_simulator.jar` with commands like these:
 ```sh
  >javac -source 1.7 -target 1.7 -nowarn -g -classpath lib/log4j-1.2.15.jar -sourcepath src/src_feed -d tmp_classes src/src_feed/portfolio_demo/feed_simulator/ExternalFeedSimulator.java
- 
+
  >jar cvf LS_quote_feed_simulator.jar -C tmp_classes src_feed
- 
+
  >javac -source 1.7 -target 1.7 -nowarn -g -classpath lib/log4j-1.2.15.jar;lib/ls-adapter-interface.jar;LS_quote_feed_simulator.jar -sourcepath src/src_adapter -d tmp_classes src/src_adapter/stocklist_demo/adapters/StockQuotesDataAdapter.java
- 
+
  >jar cvf LS_StockListDemo_DataAdapter.jar -C tmp_classes src_adapter
 ```
 * Copy the just compiled `LS_StockListDemo_DataAdapter.jar` and `LS_quote_feed_simulator.jar` in the `adapters/Stocklist/lib` folder of your Lightstreamer Server installation.
@@ -138,5 +137,5 @@ To build your own version of `LS_StockListDemo_DataAdapter.jar` and `LS_quote_fe
 
 ## Lightstreamer Compatibility Notes
 
-- Compatible with Lightstreamer SDK for Java Adapters since 6.0
-- For a version of this example compatible with Lightstreamer SDK for Java Adapters version 5.x, please refer to [this tag](https://github.com/Weswit/Lightstreamer-example-StockList-adapter-java/tree/for_Lightstreamer_5.1.2).
+* Compatible with Lightstreamer SDK for Java In-Process Adapters since 6.0
+- For a version of this example compatible with Lightstreamer SDK for Java Adapters version 5.1, please refer to [this tag](https://github.com/Weswit/Lightstreamer-example-StockList-adapter-java/releases/tag/for_Lightstreamer_5.1.2).
