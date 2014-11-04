@@ -56,7 +56,7 @@ public class StockQuotesDataAdapter implements DataProvider {
     private Logger logger;
 
     private volatile ItemEventListener listener;
-    private final HashMap<String,Boolean> subscribedItems = new HashMap<String,Boolean>();
+    private final HashMap<String,SubscriptionInfo> subscribedItems = new HashMap<String,SubscriptionInfo>();
     private final ExternalFeedSimulator myFeed;
 
     /*
@@ -133,13 +133,15 @@ public class StockQuotesDataAdapter implements DataProvider {
 
     public void subscribe(String itemName, boolean needsIterator)
             throws SubscriptionException {
-        logger.info("Subscribing to " + itemName);
+        logger.debug("Subscribing to " + itemName);
         if (needsIterator) {
             // OK, as we will always send HashMap objects
         }
         if (itemName.startsWith("item")) {
+            
             synchronized (subscribedItems) {
-                subscribedItems.put(itemName, new Boolean(false));
+                SubscriptionInfo si = new SubscriptionInfo(new Boolean(false), new Boolean(true));
+                subscribedItems.put(itemName, si);
             }
             // now we ask the feed for the snapshot; our feed will insert
             // an event with snapshot information into the normal updates flow
@@ -151,9 +153,12 @@ public class StockQuotesDataAdapter implements DataProvider {
     }
 
     public void unsubscribe(String itemName) {
-        logger.info("Unsubscribing from " + itemName);
+        logger.debug("Unsubscribing from " + itemName);
         synchronized (subscribedItems) {
-            subscribedItems.remove(itemName);
+            SubscriptionInfo si = subscribedItems.remove(itemName);
+            synchronized (si) {
+                si.stopSubscription();
+            }
         }
     }
 
@@ -181,19 +186,24 @@ public class StockQuotesDataAdapter implements DataProvider {
         
         public void onEvent(String itemName, final HashMap<String,String> currentValues,
                             boolean isSnapshot) {
+            SubscriptionInfo si;
+            
             synchronized (subscribedItems) {
                 if (!subscribedItems.containsKey(itemName)) {
                     return;
                 }
-                Boolean started = (Boolean) subscribedItems.get(itemName);
-                boolean snapshotReceived = started.booleanValue();
+                si = subscribedItems.get(itemName);
+            }
+    
+            synchronized (si) {
+                boolean snapshotReceived = si.getSnapshotReceived().booleanValue();
                 if (!snapshotReceived) {
                     if (!isSnapshot) {
                         // we ignore the update and keep waiting until
                         // a full snapshot for the item has been received
                         return;
                     }
-                    subscribedItems.put(itemName, new Boolean(true));
+                    si.setSnapshotReceived();
                 } else {
                     if (isSnapshot) {
                         // it's not the first event we have received carrying
@@ -202,47 +212,49 @@ public class StockQuotesDataAdapter implements DataProvider {
                         isSnapshot = false;
                     }
                 }
-
+                
                 // We should ensure that update cannot be called after
                 // unsubscribe, so we need to hold the subscribedItems lock;
                 // however, update is nonblocking; moreover, it only takes locks
                 // to first order mutexes; so, it can safely be called here
-
+    
                 // Note that, in case a rapid subscribe-unsubscribe-subscribe
                 // sequence has just been issued for this item,
                 // we may still be receiving and forwarding the snapshot
                 // related with the first subscribe call;
                 // this case still leads to a perfectly consistent update flow,
                 // in this scenario, so no checks are inserted to detect the case
-
+    
                 // For better control of the update flow, the SmartDataProvider
                 // interface can be implemented instead of the simpler DataProvider
-
+    
                 /* basic version:
                  */
-                listener.update(itemName, currentValues, isSnapshot);
-
+                if (si.isStillSubscribed()) {
+                    listener.update(itemName, currentValues, isSnapshot);
+                }
+    
                 /* ItemEvent version:
                 listener.update(itemName, new ItemEvent() {
-
+    
                     public Iterator getNames() {
                         return currentValues.keySet().iterator();
                     }
-
+    
                     public Object getValue(String name) {
                         return currentValues.get(name);
                     }
-
+    
                 }, isSnapshot);
                 */
-
+    
                 /* IndexedItemEvent version:
                 listener.update(itemName, new IndexedItemEvent() {
-
+    
                     public int getMaximumIndex() {
                         return names.length - 1;
                     }
-
+    
                     public int getIndex(String name) {
                         Object keyObject = codes.get(name);
                         if (keyObject == null) {
@@ -251,7 +263,7 @@ public class StockQuotesDataAdapter implements DataProvider {
                             return ((Integer) keyObject).intValue();
                         }
                     }
-
+    
                     public String getName(int index) {
                         if (currentValues.get(names[index]) == null) {
                             return null;
@@ -259,17 +271,45 @@ public class StockQuotesDataAdapter implements DataProvider {
                             return names[index];
                         }
                     }
-
+    
                     public Object getValue(int index) {
                         return currentValues.get(names[index]);
                     }
-
+    
                 }, isSnapshot);
                 */
             }
-
         }
-
     }
 
+    /**
+     * Manages the current state of the subscription 
+     * for a single Item.
+     */
+    private class SubscriptionInfo {
+        Boolean snapshotReceived = null;
+        public void setSnapshotReceived() {
+            this.snapshotReceived = new Boolean(true);
+        }
+
+        public Boolean getSnapshotReceived() {
+            return snapshotReceived;
+        }
+
+        Boolean stillSubscribed = null;
+        
+        public boolean isStillSubscribed() {
+            return this.stillSubscribed.booleanValue();
+        }
+        
+        public SubscriptionInfo(Boolean snapshotReceived, Boolean isStillSubscribed) {
+            this.snapshotReceived = snapshotReceived;
+            this.stillSubscribed = isStillSubscribed;
+        }
+        
+        public void  stopSubscription() {
+            this.stillSubscribed = new Boolean(false);
+        }
+    }
+    
 }
