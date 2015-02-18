@@ -85,8 +85,9 @@ The `adapters.xml` file for the Stock-List Demo, should look like:
 </adapters_conf>
 ```
 
-<i>NOTE: not all configuration options of a Metadata and Data Adapters are exposed by the file suggested above.
+<i>NOTE: not all configuration options of Metadata and Data Adapters are exposed by the file suggested above.
 You can easily expand your configurations using the generic template, DOCS-SDKs\sdk_adapter_java_inprocess\doc\adapter_conf_template\adapters.xml, as a reference.</i>
+<br>
 Please refer [here](http://www.lightstreamer.com/docs/base/General%20Concepts.pdf) for more details about Lightstreamer Adapters.<br>
 
 ## Install
