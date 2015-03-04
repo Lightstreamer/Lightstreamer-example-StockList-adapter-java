@@ -44,10 +44,15 @@ The `adapters.xml` file for the Stock-List Demo, should look like:
 <!-- Mandatory. Define an Adapter Set and sets its unique ID. -->
 <adapters_conf id="DEMO">
 
-    <!-- Mandatory. Define the Metadata Adapter. -->
+  <!--
+    Not all configuration options of an Adapter Set are exposed by this file.
+    You can easily expand your configurations using the generic template,
+    `DOCS-SDKs/sdk_adapter_java_inprocess/doc/adapter_conf_template/adapters.xml`,
+    as a reference.
+  -->
+
     <metadata_provider>
 
-        <!-- Mandatory. Java class name of the adapter. -->
         <adapter_class>com.lightstreamer.adapters.metadata.LiteralBasedProvider</adapter_class>
 
         <!-- Optional.
@@ -68,10 +73,8 @@ The `adapters.xml` file for the Stock-List Demo, should look like:
 
     </metadata_provider>
 
-    <!-- Mandatory. Define the Data Adapter. -->
     <data_provider name="QUOTE_ADAPTER">
 
-        <!-- Mandatory. Java class name of the adapter. -->
         <adapter_class>stocklist_demo.adapters.StockQuotesDataAdapter</adapter_class>
 
         <!-- Optional for StockQuotesDataAdapter.
