@@ -112,13 +112,11 @@ To build your own version of `LS_StockListDemo_DataAdapter.jar` and `LS_quote_fe
 * Get the `log4j-1.2.17.jar` file from [Apache log4j](https://logging.apache.org/log4j/1.2/) and copy it into the `lib` folder.
 * Create the jars `LS_StockListDemo_DataAdapter.jar` and `LS_quote_feed_simulator.jar` with commands like these:
 ```sh
- >javac -source 1.7 -target 1.7 -nowarn -g -classpath lib/log4j-1.2.17.jar -sourcepath src/src_feed -d tmp_classes/feed src/src_feed/stocklist_demo/feed_simulator/ExternalFeedSimulator.java
-
- >jar cvf LS_quote_feed_simulator.jar -C tmp_classes/feed .
-
- >javac -source 1.7 -target 1.7 -nowarn -g -classpath lib/log4j-1.2.17.jar;lib/ls-adapter-interface.jar;LS_quote_feed_simulator.jar -sourcepath src/src_adapter -d tmp_classes/adapter src/src_adapter/stocklist_demo/adapters/StockQuotesDataAdapter.java
-
- >jar cvf LS_StockListDemo_DataAdapter.jar -C tmp_classes/adapter .
+ > mkdir tmp_classes/feed tmp_classes/adapter
+ > javac -source 1.7 -target 1.7 -nowarn -g -classpath lib/log4j-1.2.17.jar -sourcepath src/src_feed -d tmp_classes/feed src/src_feed/stocklist_demo/feed_simulator/ExternalFeedSimulator.java
+ > jar cvf LS_quote_feed_simulator.jar -C tmp_classes/feed .
+ > javac -source 1.7 -target 1.7 -nowarn -g -classpath lib/log4j-1.2.17.jar;lib/ls-adapter-interface.jar;LS_quote_feed_simulator.jar -sourcepath src/src_adapter -d tmp_classes/adapter src/src_adapter/stocklist_demo/adapters/StockQuotesDataAdapter.java
+ > jar cvf LS_StockListDemo_DataAdapter.jar -C tmp_classes/adapter .
 ```
 * Copy the just compiled `LS_StockListDemo_DataAdapter.jar` and `LS_quote_feed_simulator.jar` in the `adapters/Stocklist/lib` folder of your Lightstreamer Server installation.
 
