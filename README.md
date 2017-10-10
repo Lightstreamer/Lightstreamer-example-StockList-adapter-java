@@ -126,7 +126,7 @@ To build your own version of `LS_StockListDemo_DataAdapter.jar` and `LS_quote_fe
 
 <!-- START RELATED_ENTRIES -->
 
-* [Complete list of clients using this Adapter](https://github.com/Lightstreamer?query=lightstreamer-example-stocklist-client)
+* [Complete list of clients using this Adapter](https://github.com/Lightstreamer?utf8=%E2%9C%93&q=lightstreamer-example-stocklist-client&type=&language=)
 
 <!-- END RELATED_ENTRIES -->
 ### Related Projects
