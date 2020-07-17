@@ -24,8 +24,8 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.xml.DOMConfigurator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import stocklist_demo.feed_simulator.ExternalFeedListener;
 import stocklist_demo.feed_simulator.ExternalFeedSimulator;
@@ -102,6 +102,7 @@ public class StockQuotesDataAdapter implements DataProvider {
      * feed, for a real feed).
      */
     public void init(Map params, File configDir) {
+        /*
         String logConfig = (String) params.get("log_config");
         if (logConfig != null) {
             File logConfigFile = new File(configDir, logConfig);
@@ -111,8 +112,8 @@ public class StockQuotesDataAdapter implements DataProvider {
             } else {
                 DOMConfigurator.configure(logConfigFile.getAbsolutePath());
             }
-        }
-        logger = Logger.getLogger("LS_demos_Logger.StockQuotes");
+        }*/
+        logger = LogManager.getLogger("LS_demos_Logger.StockQuotes");
         
         //The feedMap of this adapter is never used
         // Read the Adapter Set name, which is supplied by the Server as a parameter

@@ -80,7 +80,6 @@ The `adapters.xml` file for the Stock-List Demo, should look like:
         <!-- Optional for StockQuotesDataAdapter.
              Configuration file for the Adapter's own logging.
              Logging is managed through log4j. -->
-        <param name="log_config">adapters_log_conf.xml</param>
         <param name="log_config_refresh_seconds">10</param>
 
     </data_provider>
