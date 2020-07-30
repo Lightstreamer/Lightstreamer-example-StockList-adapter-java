@@ -90,7 +90,7 @@ The `adapters.xml` file for the Stock-List Demo, should look like:
 <i>NOTE: not all configuration options of an Adapter Set are exposed by the file suggested above. 
 You can easily expand your configurations using the generic template, `DOCS-SDKs/sdk_adapter_java_inprocess/doc/adapter_conf_template/adapters.xml`, as a reference.</i><br>
 <br>
-Please refer [here](http://www.lightstreamer.com/docs/base/General%20Concepts.pdf) for more details about Lightstreamer Adapters.<br>
+Please refer [here](https://lightstreamer.com/docs/ls-server/latest/General%20Concepts.pdf) for more details about Lightstreamer Adapters.<br>
 
 ## Install
 
