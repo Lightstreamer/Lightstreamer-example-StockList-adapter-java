@@ -2,13 +2,13 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <groupId>com.lightstreamer</groupId>
-  <artifactId>example-StockList-adapter-java</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <groupId>com.lightstreamer.examples</groupId>
+  <artifactId>example-stockList-adapter-java</artifactId>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>example-StockList-adapter-java</name>
-  <url>http://maven.apache.org</url>
+  <name>Lightstreamer Stock-List Demo Java Adapter</name>
+  <url>https://github.com/Lightstreamer/Lightstreamer-example-StockList-adapter-java</url>
 
   <properties>
     <maven.compiler.target>1.8</maven.compiler.target>
@@ -35,14 +35,19 @@
             </goals>
           </execution>
         </executions>
-        <configuration>
-          <mainClass>stocklist_demo.adapters.StockQuotesDataAdapter</mainClass>
-        </configuration>
       </plugin>
          
     </plugins>
   </build>
-  
+
+  <distributionManagement>
+    <repository>
+      <id>github</id>
+      <name>GitHub Lightstreamer Apache Maven Packages</name>
+      <url>https://maven.pkg.github.com/Lightstreamer/Lightstreamer-example-StockList-adapter-java</url>
+    </repository>
+  </distributionManagement>  
+
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
