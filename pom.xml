@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.lightstreamer.examples</groupId>
-  <artifactId>example-stockList-adapter-java</artifactId>
+  <artifactId>stocklist-adapter-java</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
