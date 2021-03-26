@@ -15,7 +15,7 @@
 * limitations under the License.
 *
 */
-package stocklist_demo.adapters;
+package com.lightstreamer.examples.stocklist_demo.adapters;
 
 import java.io.File;
 import java.util.HashMap;
@@ -27,8 +27,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import stocklist_demo.feed_simulator.ExternalFeedListener;
-import stocklist_demo.feed_simulator.ExternalFeedSimulator;
+import com.lightstreamer.examples.stocklist_demo.feed_simulator.ExternalFeedListener;
+import com.lightstreamer.examples.stocklist_demo.feed_simulator.ExternalFeedSimulator;
 
 import com.lightstreamer.interfaces.data.DataProvider;
 import com.lightstreamer.interfaces.data.IndexedItemEvent;
