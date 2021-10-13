@@ -36,7 +36,6 @@
           </execution>
         </executions>
       </plugin>
-         
     </plugins>
   </build>
 
@@ -46,7 +45,7 @@
       <name>GitHub Lightstreamer Apache Maven Packages</name>
       <url>https://maven.pkg.github.com/Lightstreamer/Lightstreamer-example-StockList-adapter-java</url>
     </repository>
-  </distributionManagement>  
+  </distributionManagement>
 
   <dependencies>
     <dependency>
