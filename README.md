@@ -127,6 +127,7 @@ Assuming Maven is installed and available in your path you can build the demo by
 
 ### The Same Demo Adapter With Other Technologies
 
+* [Lightstreamer - Stock-List Demo - Java Remote Adapter](https://github.com/Lightstreamer/Lightstreamer-example-StockList-adapter-java-remote)
 * [Lightstreamer - Stock-List Demo - .NET Adapter](https://github.com/Lightstreamer/Lightstreamer-example-StockList-adapter-dotnet)
 * [Lightstreamer - Stock-List Demo - Java (JMS) Adapter](https://github.com/Lightstreamer/Lightstreamer-example-StockList-adapter-JMS)
 
