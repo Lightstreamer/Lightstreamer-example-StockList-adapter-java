@@ -4,15 +4,15 @@
 
   <groupId>com.lightstreamer.examples</groupId>
   <artifactId>stocklist-adapter-java</artifactId>
-  <version>1.0.0</version>
+  <version>2.0.0</version>
   <packaging>jar</packaging>
 
   <name>Lightstreamer Stock-List Demo Java Adapter</name>
   <url>https://github.com/Lightstreamer/Lightstreamer-example-StockList-adapter-java</url>
 
   <properties>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 
@@ -57,7 +57,8 @@
     <dependency>
       <groupId>com.lightstreamer</groupId>
       <artifactId>ls-adapter-inprocess</artifactId>
-      <version>7.3.0</version>
+      <version>9.0.0</version>
+      <classifier>v9plus</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>

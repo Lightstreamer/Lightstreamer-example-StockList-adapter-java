@@ -23,12 +23,12 @@ Handles the data delivery from the ExternalFeedSimulator to the DemoDataProvider
 
 #### DemoDataAdapter
 
-Implements the DataProvider interface to handle the communication with Lightstreamer Kernel. Leverages the ExternalFeedListener to get the data originated by the ExternalFeedSimulator. Injects the received data into Lightstreamer Kernel or filters it out based on the subscriptions/unsubscriptions received from the Kernel.<br>
+Implements the `DataAdapter` interface to handle the communication with Lightstreamer Kernel. Leverages the ExternalFeedListener to get the data originated by the ExternalFeedSimulator. Injects the received data into Lightstreamer Kernel or filters it out based on the subscriptions/unsubscriptions received from the Kernel.<br>
 <br>
 
 See the source code comments for further details.
 
-The Metadata Adapter functionalities are absolved by the `LiteralBasedProvider` in [Lightstreamer Java In-Process Adapter SDK](https://github.com/Lightstreamer/Lightstreamer-lib-adapter-java-inprocess#literalbasedprovider-metadata-adapter), a simple full implementation of a Metadata Adapter, already provided by Lightstreamer server. 
+The project also includes a `PermissiveMetadataAdapter`, a bare-bones Metadata Adapter implementation that accepts any session and subscription. It is intended for demo purposes only and has no authentication support.
 
 <!-- END DESCRIPTION lightstreamer-example-stocklist-adapter-java -->
 
@@ -46,23 +46,10 @@ The `adapters.xml` file for the Stock-List Demo, should look like:
 
     <metadata_provider>
 
-        <adapter_class>com.lightstreamer.adapters.metadata.LiteralBasedProvider</adapter_class>
+        <adapter_class>com.lightstreamer.examples.stocklist_demo.adapters.PermissiveMetadataAdapter</adapter_class>
 
-        <!-- Optional.
-             See LiteralBasedProvider javadoc. -->
-        <!--
-        <param name="max_bandwidth">40</param>
-        <param name="max_frequency">3</param>
-        <param name="buffer_size">30</param>
-        <param name="distinct_snapshot_length">10</param>
-        <param name="prefilter_frequency">5</param>
-        <param name="allowed_users">user123,user456</param>
-        -->
-
-        <!-- Optional.
-             See LiteralBasedProvider javadoc. -->
-        <param name="item_family_1">item.*</param>
-        <param name="modes_for_item_family_1">MERGE</param>
+        <!-- Ensure compatibility with old versions of the demo Clients. -->
+        <support_LiteralBased_subscriptions>Y</support_LiteralBased_subscriptions>
 
     </metadata_provider>
 
@@ -122,7 +109,6 @@ Assuming Maven is installed and available in your path you can build the demo by
 ### Related Projects
 
 * [Lightstreamer Java In-Process Adapter SDK](https://github.com/Lightstreamer/Lightstreamer-lib-adapter-java-inprocess)
-* [LiteralBasedProvider Metadata Adapter](https://github.com/Lightstreamer/Lightstreamer-lib-adapter-java-inprocess#literalbasedprovider-metadata-adapter)
 * [Lightstreamer - Portfolio Demo - Java Adapter](https://github.com/Lightstreamer/Lightstreamer-example-Portfolio-adapter-java)
 
 ### The Same Demo Adapter With Other Technologies
@@ -133,5 +119,6 @@ Assuming Maven is installed and available in your path you can build the demo by
 
 ## Lightstreamer Compatibility Notes
 
-* Compatible with Lightstreamer SDK for Java In-Process Adapters since 6.0
+- Compatible with Lightstreamer SDK for Java In-Process Adapters since version 9.0.
+- For a version of this example compatible with Lightstreamer SDK for Java In-Process Adapters versions 8.x, please refer to [this tag](https://github.com/Lightstreamer/Lightstreamer-example-StockList-adapter-java/tree/XXXXXXXXXXXXXXXXXXXXX).
 - For a version of this example compatible with Lightstreamer SDK for Java Adapters version 5.1, please refer to [this tag](https://github.com/Lightstreamer/Lightstreamer-example-StockList-adapter-java/releases/tag/for_Lightstreamer_5.1.2).

@@ -32,8 +32,8 @@ import java.util.TimerTask;
  */
 public class ExternalFeedSimulator {
 
-    private static final Timer dispatcher = new Timer();
-    private static final Random random = new Random();
+    private final Timer dispatcher = new Timer(true);
+    private final Random random = new Random();
 
     /**
      * Used to automatically generate the updates for the 30 stocks:
@@ -122,6 +122,13 @@ public class ExternalFeedSimulator {
             long waitTime = myProducer.computeNextWaitTime();
             scheduleGenerator(myProducer, waitTime);
         }
+    }
+
+    /**
+     * Stops generating update events. Cancels all pending scheduled tasks.
+     */
+    public void stop() {
+        dispatcher.cancel();
     }
 
     /**

@@ -19,10 +19,11 @@ package com.lightstreamer.examples.stocklist_demo.adapters;
 
 import java.io.File;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.CompletionStage;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,11 +31,12 @@ import org.apache.logging.log4j.Logger;
 import com.lightstreamer.examples.stocklist_demo.feed_simulator.ExternalFeedListener;
 import com.lightstreamer.examples.stocklist_demo.feed_simulator.ExternalFeedSimulator;
 
-import com.lightstreamer.interfaces.data.DataProvider;
-import com.lightstreamer.interfaces.data.IndexedItemEvent;
-import com.lightstreamer.interfaces.data.ItemEvent;
-import com.lightstreamer.interfaces.data.ItemEventListener;
-import com.lightstreamer.interfaces.data.SubscriptionException;
+import com.lightstreamer.adapter.common.InitException;
+import com.lightstreamer.adapter.common.Mode;
+import com.lightstreamer.adapter.data.DataAdapter;
+import com.lightstreamer.adapter.data.ItemListener;
+import com.lightstreamer.adapter.data.ItemManager;
+import com.lightstreamer.adapter.data.SubscriptionException;
 
 /**
  * This Data Adapter accepts a limited set of item names (the names starting
@@ -46,7 +48,7 @@ import com.lightstreamer.interfaces.data.SubscriptionException;
  * by selecting the updates to be sent. Many other types of feeds may exist,
  * with very different behaviors.
  */
-public class StockQuotesDataAdapter implements DataProvider {
+public class StockQuotesDataAdapter implements DataAdapter {
 
     /**
      * Private logger; a specific "LS_demos_Logger.StockQuotes" category
@@ -54,45 +56,9 @@ public class StockQuotesDataAdapter implements DataProvider {
      */
     private Logger logger;
 
-    private volatile ItemEventListener listener;
     private final HashMap<String,SubscriptionInfo> subscribedItems = new HashMap<String,SubscriptionInfo>();
     private final ExternalFeedSimulator myFeed;
-
-    /*
-     * used for the IndexedItemEvent version only (currently commented out)
-     */
-    private static final String[] names = new String[]{"stock_name", "time",
-                                                       "last_price",
-                                                       "ask", "bid",
-                                                       "bid_quantity",
-                                                       "ask_quantity",
-                                                       "pct_change", "min",
-                                                       "max", "ref_price",
-                                                       "open_price", "item_status"};
-    /*
-     * used for the IndexedItemEvent version only (currently commented out)
-     */
-    private static final HashMap<String,Integer> codes = new HashMap<String,Integer>() {
-        {
-            for (int code = 0; code < names.length; code++) {
-                put(names[code], new Integer(code));
-            }
-        }
-    };
     
-    /**
-     * Currently unused:
-     * A static map, to be used by the Metadata Adapter to find the data
-     * adapter instance; this allows the Metadata Adapter to forward client
-     * messages to the adapter.
-     * The map allows multiple instances of this Data Adapter to be included
-     * in different Adapter Sets. Each instance is identified with the name
-     * of the related Adapter Set; defining multiple instances in the same
-     * Adapter Set is not allowed.
-     */
-    public static final ConcurrentHashMap<String, StockQuotesDataAdapter> feedMap =
-        new ConcurrentHashMap<String, StockQuotesDataAdapter>();
-
     public StockQuotesDataAdapter() {
         myFeed = new ExternalFeedSimulator();
     }
@@ -101,12 +67,12 @@ public class StockQuotesDataAdapter implements DataProvider {
      * Starts the simulator feed (or connects to the external
      * feed, for a real feed).
      */
-    public void init(Map params, File configDir) {
+    public void init(Map<String, String> params, File configDir) throws InitException {
         /*
-        String logConfig = (String) params.get("log_config");
+        String logConfig = params.get("log_config");
         if (logConfig != null) {
             File logConfigFile = new File(configDir, logConfig);
-            String logRefresh = (String) params.get("log_config_refresh_seconds");
+            String logRefresh = params.get("log_config_refresh_seconds");
             if (logRefresh != null) {
                 DOMConfigurator.configureAndWatch(logConfigFile.getAbsolutePath(), Integer.parseInt(logRefresh) * 1000);
             } else {
@@ -115,55 +81,23 @@ public class StockQuotesDataAdapter implements DataProvider {
         }*/
         logger = LogManager.getLogger("LS_demos_Logger.StockQuotes");
         
-        //The feedMap of this adapter is never used
-        // Read the Adapter Set name, which is supplied by the Server as a parameter
-        String adapterSetId = (String) params.get("adapters_conf.id");
-        // Put a reference to this instance on a static map
-        // to be read by the Metadata Adapter
-        feedMap.put(adapterSetId, this);
-
+        myFeed.setFeedListener(new MyFeedListener());
         myFeed.start();
         logger.info("StockQuotesDataAdapter ready.");
     }
 
-    public void setListener(ItemEventListener listener) {
-        this.listener = listener;
-        myFeed.setFeedListener(new MyFeedListener());
-    }
-
-    public void subscribe(String itemName, boolean needsIterator)
+    public CompletionStage<ItemManager> getItemManager(String itemName)
             throws SubscriptionException {
-        logger.debug("Subscribing to " + itemName);
-        if (needsIterator) {
-            // OK, as we will always send HashMap objects
-        }
-        if (itemName.startsWith("item")) {
-            
-            synchronized (subscribedItems) {
-                SubscriptionInfo si = new SubscriptionInfo(new Boolean(false), new Boolean(true));
-                subscribedItems.put(itemName, si);
-            }
-            // now we ask the feed for the snapshot; our feed will insert
-            // an event with snapshot information into the normal updates flow
-            myFeed.sendCurrentValues(itemName);
-        } else {
+        if (!itemName.startsWith("item")) {
             logger.error("Cannot subscribe to " + itemName + " - only names starting with \"item\" are supported");
             throw new SubscriptionException("Unexpected item: " + itemName);
         }
+        return CompletableFuture.completedFuture(new StockItemManager(itemName));
     }
 
-    public void unsubscribe(String itemName) {
-        logger.debug("Unsubscribing from " + itemName);
-        synchronized (subscribedItems) {
-            SubscriptionInfo si = subscribedItems.remove(itemName);
-            synchronized (si) {
-                si.stopSubscription();
-            }
-        }
-    }
 
-    public boolean isSnapshotAvailable(String itemName) {
-        return true;
+    public void shutdown() {
+        myFeed.stop();
     }
 
     // never used in the demo, just showing the feature
@@ -171,11 +105,55 @@ public class StockQuotesDataAdapter implements DataProvider {
         synchronized (subscribedItems) {
             Set<String> keys = subscribedItems.keySet();
             for (String itemName : keys) {
-                listener.clearSnapshot(itemName);
+                SubscriptionInfo si = subscribedItems.get(itemName);
+                si.getItemListener().clearSnapshot();
             }
         }
     }
     
+    private class StockItemManager implements ItemManager {
+        private final String itemName;
+
+        StockItemManager(String itemName) {
+            this.itemName = itemName;
+        }
+
+        @Override
+        public Mode getSupportedMode() {
+            return Mode.MERGE;
+        }
+
+        @Override
+        public CompletionStage<Void> subscribe(ItemListener listener) {
+            logger.debug("Subscribing to " + itemName);
+            synchronized (subscribedItems) {
+                SubscriptionInfo si = new SubscriptionInfo(false, true, listener);
+                subscribedItems.put(itemName, si);
+            }
+            // now we ask the feed for the snapshot; our feed will insert
+            // an event with snapshot information into the normal updates flow
+            myFeed.sendCurrentValues(itemName);
+            return CompletableFuture.completedFuture(null);
+        }
+
+        @Override
+        public boolean isSnapshotAvailable() {
+            return true;
+        }
+
+        @Override
+        public CompletionStage<Void> unsubscribe() {
+            logger.debug("Unsubscribing from " + itemName);
+            synchronized (subscribedItems) {
+                SubscriptionInfo si = subscribedItems.remove(itemName);
+                synchronized (si) {
+                    si.stopSubscription();
+                }
+            }
+            return CompletableFuture.completedFuture(null);
+        }
+    }
+
     private class MyFeedListener implements ExternalFeedListener {
 
         /**
@@ -225,59 +203,14 @@ public class StockQuotesDataAdapter implements DataProvider {
                 // this case still leads to a perfectly consistent update flow,
                 // in this scenario, so no checks are inserted to detect the case
     
-                // For better control of the update flow, the SmartDataProvider
-                // interface can be implemented instead of the simpler DataProvider
-    
-                /* basic version:
-                 */
                 if (si.isStillSubscribed()) {
-                    listener.update(itemName, currentValues, isSnapshot);
+                    ItemListener itemListener = si.getItemListener();
+                    if (isSnapshot) {
+                        itemListener.snapshot(currentValues, null);
+                    } else {
+                        itemListener.update(currentValues);
+                    }
                 }
-    
-                /* ItemEvent version:
-                listener.update(itemName, new ItemEvent() {
-    
-                    public Iterator getNames() {
-                        return currentValues.keySet().iterator();
-                    }
-    
-                    public Object getValue(String name) {
-                        return currentValues.get(name);
-                    }
-    
-                }, isSnapshot);
-                */
-    
-                /* IndexedItemEvent version:
-                listener.update(itemName, new IndexedItemEvent() {
-    
-                    public int getMaximumIndex() {
-                        return names.length - 1;
-                    }
-    
-                    public int getIndex(String name) {
-                        Object keyObject = codes.get(name);
-                        if (keyObject == null) {
-                            return -1;
-                        } else {
-                            return ((Integer) keyObject).intValue();
-                        }
-                    }
-    
-                    public String getName(int index) {
-                        if (currentValues.get(names[index]) == null) {
-                            return null;
-                        } else {
-                            return names[index];
-                        }
-                    }
-    
-                    public Object getValue(int index) {
-                        return currentValues.get(names[index]);
-                    }
-    
-                }, isSnapshot);
-                */
             }
         }
     }
@@ -289,7 +222,7 @@ public class StockQuotesDataAdapter implements DataProvider {
     private class SubscriptionInfo {
         Boolean snapshotReceived = null;
         public void setSnapshotReceived() {
-            this.snapshotReceived = new Boolean(true);
+            this.snapshotReceived = Boolean.TRUE;
         }
 
         public Boolean getSnapshotReceived() {
@@ -301,14 +234,21 @@ public class StockQuotesDataAdapter implements DataProvider {
         public boolean isStillSubscribed() {
             return this.stillSubscribed.booleanValue();
         }
+
+        ItemListener itemListener = null;
+
+        public ItemListener getItemListener() {
+            return itemListener;
+        }
         
-        public SubscriptionInfo(Boolean snapshotReceived, Boolean isStillSubscribed) {
+        public SubscriptionInfo(boolean snapshotReceived, boolean isStillSubscribed, ItemListener itemListener) {
             this.snapshotReceived = snapshotReceived;
             this.stillSubscribed = isStillSubscribed;
+            this.itemListener = itemListener;
         }
         
         public void  stopSubscription() {
-            this.stillSubscribed = new Boolean(false);
+            this.stillSubscribed = Boolean.FALSE;
         }
     }
     
